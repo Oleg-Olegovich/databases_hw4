@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:14.5
+    environment:
+      POSTGRES_DB: "manzhula_206"
+      POSTGRES_USER: "manzhula_206"
+      POSTGRES_PASSWORD: "manzhula_206"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - ./docker/db/scripts/library.sql:/docker-entrypoint-initdb.d/library.sql
+      - ./docker/db/scripts/hospital.sql:/docker-entrypoint-initdb.d/hospital.sql
+      - ./docker/db/scripts/train_schedule.sql:/docker-entrypoint-initdb.d/train_schedule.sql
+
+      - ./hw:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
